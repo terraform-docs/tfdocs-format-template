@@ -74,7 +74,7 @@ const (
 			No resources.
 		{{ else }}
 			{{- range .Module.Resources }}
-				- {{ .Name }}
+				- {{ .ProviderName }}
 			{{- end }}
 		{{- end }}
 	{{ end -}}
@@ -87,7 +87,7 @@ const (
 			No providers.
 		{{ else }}
 			{{- range .Module.Providers }}
-				- {{ .ProviderName }}
+				- {{ .Name }}
 			{{- end }}
 		{{- end }}
 	{{ end -}}

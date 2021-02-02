@@ -39,6 +39,7 @@ func (e *engine) Print(module terraform.Module, settings *print.Settings) (strin
 		&template.Item{Name: "outputs", Text: tplOutputs},
 		&template.Item{Name: "requirements", Text: tplRequirements},
 		&template.Item{Name: "providers", Text: tplProviders},
+		&template.Item{Name: "resources", Text: tplResources},
 	)
 
 	rendered, err := tpl.Render(module)
