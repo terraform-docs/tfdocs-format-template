@@ -2,8 +2,8 @@
 
 `tfdocs-format-template` is a minimal [terraform-docs] plugin that is built with
 [plugin SDK] and  is meant to be used as a template for implementing new plugin.
-Most of the time you only need to modify and reorder the go template strings defined
-in `engine/sections.go`.
+Most of the time you only need to modify and reorder the go template defined in
+`engine/sections.tmpl`.
 
 ## Requirements
 
