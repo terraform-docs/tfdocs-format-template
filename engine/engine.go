@@ -17,10 +17,15 @@ limitations under the License.
 package engine
 
 import (
+	_ "embed" //nolint
+
 	"github.com/terraform-docs/plugin-sdk/print"
 	"github.com/terraform-docs/plugin-sdk/template"
 	"github.com/terraform-docs/plugin-sdk/terraform"
 )
+
+//go:embed sections.tmpl
+var tplCustom []byte
 
 type engine struct{}
 
@@ -33,13 +38,7 @@ func New() print.Engine {
 // the output however you choose to.
 func (e *engine) Print(module terraform.Module, settings *print.Settings) (string, error) {
 	tpl := template.New(settings,
-		&template.Item{Name: "custom", Text: tplCustom},
-		&template.Item{Name: "header", Text: tplHeader},
-		&template.Item{Name: "inputs", Text: tplInputs},
-		&template.Item{Name: "outputs", Text: tplOutputs},
-		&template.Item{Name: "requirements", Text: tplRequirements},
-		&template.Item{Name: "providers", Text: tplProviders},
-		&template.Item{Name: "resources", Text: tplResources},
+		&template.Item{Name: "custom", Text: string(tplCustom)},
 	)
 
 	rendered, err := tpl.Render(module)
