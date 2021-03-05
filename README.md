@@ -7,7 +7,7 @@ in `engine/sections.go`.
 
 ## Requirements
 
-- [Go] 1.15+
+- [Go] 1.16+
 - [terraform-docs] v0.11+
 
 Optionally for releasing:
