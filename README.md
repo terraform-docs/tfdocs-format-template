@@ -54,6 +54,58 @@ Note that the plugin has to be built for target OS and architecture (`make build
 and `make install` do that,) but if you want to redistribute the plugin for other
 people to use you have to cross-compile it (for example you can use [gox].)
 
+## Docker
+
+If you don't want cross-compile your plugin, you can pack it to the docker image. 
+So the only dependency needed the user/or a server machine is `docker`.
+
+### Building and publishing docker image
+
+```bash
+make docker
+```
+
+Before you will build your docker image you have to replace very few things in the `Makefile` and the `Dockerfile`.
+
+Things to replace:
+
+`Makefile`:
+- DOCKER_REGISTRY (could be any docker registry)
+- PROJECT_OWNER (how the the place file in your registry. In our company it's something like `devops/tools`)
+- BUILD_NAME (your project name should follow the patter `tfdocs-format-<uniqueName>` )
+
+`Dockerfile`:
+- all **PROJECT_NAME** entries should be replaced with your project name( and it should follow the pattern `tfdocs-format-<uniqueName>`)
+
+After all changes and `make docker` successful execution, you can push your new perfect image to the registry by:
+```bash
+make push
+```
+
+### Using docker image with your custom plugin
+
+I'm a little lazy, and I made a simple sh script for easy usage of docker image with terraform-docs and the custom plugin:
+
+```shell
+#!/bin/bash
+
+img=<link to the docker image with terraform-docs and custom plugin>
+
+dir=$1
+out_file=$2
+
+function printMarkdownTo() {
+  pushd $1
+    (docker run --rm -v `pwd`:`pwd` -w `pwd` $img .) > $2
+  popd
+}
+
+printMarkdownTo ${dir} ${out_file}
+
+```
+
+## Links
+
 [terraform-docs]: https://github.com/terraform-docs/terraform-docs
 [plugin SDK]: https://github.com/terraform-docs/plugin-sdk
 [Go]: https://golang.org/
