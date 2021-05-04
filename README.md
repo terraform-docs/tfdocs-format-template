@@ -50,7 +50,7 @@ Additionally you can override the destination of installation:
 PLUGIN_FOLDER=/path/to/plugin/folder make install
 ```
 
-Note that the plugin has to be built for target OS and archetecture (`make build`
+Note that the plugin has to be built for target OS and architecture (`make build`
 and `make install` do that,) but if you want to redistribute the plugin for other
 people to use you have to cross-compile it (for example you can use [gox].)
 
