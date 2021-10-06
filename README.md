@@ -3,12 +3,12 @@
 `tfdocs-format-template` is a minimal [terraform-docs] plugin that is built with
 [plugin SDK] and  is meant to be used as a template for implementing new plugin.
 Most of the time you only need to modify and reorder the go template defined in
-`engine/sections.tmpl`.
+`sections.tmpl`.
 
 ## Requirements
 
 - [Go] 1.16+
-- [terraform-docs] v0.11+
+- [terraform-docs] v0.16+
 
 Optionally for releasing:
 
@@ -55,6 +55,6 @@ and `make install` do that,) but if you want to redistribute the plugin for othe
 people to use you have to cross-compile it (for example you can use [gox].)
 
 [terraform-docs]: https://github.com/terraform-docs/terraform-docs
-[plugin SDK]: https://github.com/terraform-docs/plugin-sdk
+[plugin SDK]: https://github.com/terraform-docs/terraform-docs/tree/master/plugin
 [Go]: https://golang.org/
 [gox]: https://github.com/mitchellh/gox

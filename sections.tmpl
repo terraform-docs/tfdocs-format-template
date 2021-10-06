@@ -1,11 +1,11 @@
-{{- if .Settings.ShowHeader -}}
+{{- if .Config.Sections.Header -}}
 	{{- with .Module.Header -}}
 		{{ . }}
 		{{ printf "\n" }}
 	{{- end -}}
 {{ end -}}
 
-{{- if .Settings.ShowInputs -}}
+{{- if .Config.Sections.Inputs -}}
 	{{ indent 0 "#" }} Inputs
 	{{ if not .Module.Inputs }}
 		No inputs.
@@ -15,12 +15,12 @@
 		{{ indent 1 "#" }} {{ name .Name }} ` + "`" + `{{ .Type }}` + "`" + `
 
 		Description: {{ .Description }}
-		Default: {{ .Default }}
+		Default: {{ .GetValue }}
 		{{- end }}
 	{{ end }}
 {{ end -}}
 
-{{- if .Settings.ShowOutputs -}}
+{{- if .Config.Sections.Outputs -}}
 	{{ indent 0 "#" }} Outputs
 	{{ if not .Module.Outputs }}
 		No outputs.
@@ -34,13 +34,13 @@
 	{{ end }}
 {{ end -}}
 
-{{- if .Settings.ShowRequirements -}}
+{{- if .Config.Sections.Requirements -}}
 {{ indent 0 "#" }} Requirements
 
 Intentionally don't show requirements to demonstrate the flexibility of the plugin.
 {{ end -}}
 
-{{- if .Settings.ShowProviders -}}
+{{- if .Config.Sections.Providers -}}
 	{{ indent 0 "#" }} Providers
 	{{ if not .Module.Providers }}
 		No providers.
@@ -51,7 +51,7 @@ Intentionally don't show requirements to demonstrate the flexibility of the plug
 	{{- end }}
 {{ end -}}
 
-{{- if .Settings.ShowResources -}}
+{{- if .Config.Sections.Resources -}}
 {{ indent 0 "#" }} Resources
 	{{ if not .Module.Resources }}
 		No resources.
